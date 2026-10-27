@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AeroNix Guard (Demo) — Cybersecurity per missioni medicali autonome</title>
+<style>
+:root{--bg:#eef1f5;--panel:#ffffff;--ink:#14263d;--mute:#52627a;--line:#cdd5e0;--accent:#1d6a8a;--accent-soft:#dcebf1;--warn:#a8650f;--warn-soft:#f6e9d3}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1b2b;--panel:#17283d;--ink:#e8eef6;--mute:#9db0c8;--line:#2c4160;--accent:#6bb7d4;--accent-soft:#1b3a4d;--warn:#e0a458;--warn-soft:#3a2d17}}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Source Sans 3","Segoe UI",Helvetica,Arial,sans-serif;font-size:clamp(15px,1.55vw,22px);line-height:1.5;overflow:hidden}
+.slide{display:none;height:100%;padding:6vh 7vw 9vh;flex-direction:column;justify-content:center;gap:2.6vh;max-width:1400px;margin:0 auto}
+.slide.on{display:flex}
+h1,h2{font-family:"Source Serif 4",Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+h1{font-size:clamp(34px,5.4vw,78px)}
+h2{font-size:clamp(26px,3.5vw,50px)}
+h3{font-size:1.05em;font-weight:650}
+.sub{color:var(--mute);font-size:1.1em;max-width:46em}
+.tag{color:var(--accent);font-weight:600}
+.msg{border-left:4px solid var(--accent);padding:.4em 0 .4em 1em;max-width:44em;color:var(--ink)}
+.grid{display:grid;gap:1.2vw}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1.1em 1.2em}
+.card p{color:var(--mute);font-size:.92em;margin-top:.4em}
+.risk{border-top:4px solid var(--warn)}
+.comp{border-top:4px solid var(--accent)}
+.flow{display:flex;align-items:stretch;gap:.5vw}
+.flow div{flex:1;background:var(--accent-soft);color:var(--ink);padding:.7em .6em;border-radius:4px;text-align:center;font-weight:600;font-size:.88em;position:relative}
+.flow div+div::before{content:"";position:absolute;left:-.55vw;top:50%;width:.6vw;height:2px;background:var(--accent)}
+.tl{list-style:none;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:1.2vw;counter-reset:s}
+.tl li{counter-increment:s;background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:1em;font-size:.9em;position:relative}
+.tl li::before{content:counter(s);display:block;width:1.7em;height:1.7em;line-height:1.7em;text-align:center;border-radius:50%;background:var(--accent);color:var(--bg);font-weight:700;margin-bottom:.5em}
+.chain{font-weight:650;color:var(--accent);font-size:1.05em}
+.note{background:var(--warn-soft);border-left:4px solid var(--warn);padding:.7em 1em;border-radius:3px;font-size:.88em;max-width:56em}
+ul.plain{padding-left:1.1em}
+ul.plain li{margin:.25em 0}
+.brand{position:fixed;left:2vw;bottom:2.4vh;font-size:.7em;color:var(--mute)}
+nav{position:fixed;right:2vw;bottom:1.6vh;display:flex;gap:.6em;align-items:center;font-size:.8em;color:var(--mute)}
+nav button{background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:.35em .8em;font:inherit;cursor:pointer}
+nav button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+@media (max-width:820px){body{overflow:auto}.slide{padding:5vh 6vw 12vh;justify-content:flex-start}.g3,.g4,.g2,.tl{grid-template-columns:1fr}.flow{flex-direction:column}.flow div+div::before{display:none}}
+@media print{body{overflow:visible}.slide{display:flex;height:100vh;page-break-after:always}nav,.brand{display:none}}
+</style>
+</head>
+<body>
+
+<section class="slide on" id="s1">
+  <p class="tag">Hackathon CIIRCLE · Cybersecurity e Sovranità Digitale · Sfida 6</p>
+  <h1>AeroNix Guard (Demo)</h1>
+  <p class="sub">Cybersecurity per missioni medicali autonome</p>
+  <p class="msg">Una proposta di sicurezza complementare alla piattaforma ABzero, per rilevare anomalie, correlare eventi sospetti e supportare una risposta sicura e tracciabile.</p>
+</section>
+
+<section class="slide" id="s2">
+  <h2>La cybersecurity diventa sicurezza sanitaria</h2>
+  <p class="sub">Il trasporto di materiali sanitari con velivoli autonomi richiede sicurezza, affidabilità e continuità operativa. La traccia della sfida evidenzia tre rischi principali.</p>
+  <div class="grid g3">
+    <div class="card risk"><h3>Perdita del controllo</h3><p>Perdita del controllo del velivolo durante la missione.</p></div>
+    <div class="card risk"><h3>Jamming e spoofing</h3><p>Disturbo o falsificazione dei segnali di navigazione.</p></div>
+    <div class="card risk"><h3>Attacco non riconosciuto</h3><p>Difficoltà nel riconoscere e contrastare l’attacco subito.</p></div>
+  </div>
+  <p class="msg">Questi eventi possono compromettere la continuità della missione e la consegna del bene medicale in condizioni ottimali. In un sistema mission-critical non basta rilevare un problema: occorre riconoscerlo tempestivamente e gestirlo in modo sicuro.</p>
+</section>
+
+<section class="slide" id="s3">
+  <h2>Un livello di sicurezza complementare</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Rilevare</h3><p>Comportamenti anomali.</p></div>
+    <div class="card"><h3>Correlare</h3><p>Eventi potenzialmente sospetti.</p></div>
+    <div class="card"><h3>Rispondere</h3><p>Con azioni operative controllate.</p></div>
+    <div class="card"><h3>Registrare</h3><p>Eventi e azioni intraprese.</p></div>
+  </div>
+  <div class="flow" aria-label="Flusso di AeroNix Guard">
+    <div>Dati ed eventi</div><div>Rilevamento</div><div>Correlazione e decisione</div><div>Risposta autorizzata</div><div>Audit trail</div>
+  </div>
+</section>
+
+<section class="slide" id="s4">
+  <h2>Quattro componenti</h2>
+  <p class="sub">Un livello di sicurezza intelligente, composto da quattro elementi che lavorano in sequenza.</p>
+  <div class="grid g4">
+    <div class="card comp"><h3>IDS / Anomaly Detection</h3><p>Osserva telemetria ed eventi accessibili per identificare anomalie e comandi inattesi.</p></div>
+    <div class="card comp"><h3>Secure Command Gateway</h3><p>Verifica l'identità, l'integrità e i permessi dei comandi direttamente nell'architettura.</p></div>
+    <div class="card comp"><h3>Incident Correlation &amp; Safety Engine</h3><p>Correla eventi, assegna un livello di severità e propone o attiva esclusivamente azioni autorizzate.</p></div>
+    <div class="card comp"><h3>Dashboard &amp; Audit Trail</h3><p>Mostra gli alert, le motivazioni, la timeline degli eventi e l’esito della risposta.</p></div>
+  </div>
+</section>
+
+<section class="slide" id="s5">
+  <h2>Dall’anomalia alla risposta controllata</h2>
+  <p class="sub">Scenario dimostrativo.</p>
+  <ol class="tl">
+    <li>Il sistema rileva un evento sospetto, ad esempio un’anomalia nei dati di navigazione.</li>
+    <li>Il motore correla l’evento con altri segnali disponibili.</li>
+    <li>Assegna una severità e mostra perché l’evento è considerato sospetto.</li>
+    <li>Propone o attiva un’azione autorizzata secondo le regole di sicurezza.</li>
+    <li>La dashboard registra l’intera sequenza e mostra lo stato della missione simulata e l’esito della risposta.</li>
+  </ol>
+  <p class="chain">Rilevare → correlare → spiegare → rispondere → registrare</p>
+  <p class="note"><strong>Nota di trasparenza.</strong> Monitoraggio del carico medicale e navigazione resiliente saranno inclusi nella demo con dati reali solo se disponibili; altrimenti saranno rappresentati tramite eventi simulati, dichiarando esplicitamente il limite.</p>
+</section>
+
+<section class="slide" id="s6">
+  <h2>Valore e validazione</h2>
+  <p class="sub">Il prototipo sarà valutato attraverso test riproducibili e KPI da definire e misurare.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Dimensioni di valutazione</h3>
+      <ul class="plain">
+        <li><strong>Rilevamento:</strong> tempo necessario a identificare un’anomalia.</li>
+        <li><strong>Correlazione:</strong> capacità di collegare eventi sospetti distinti.</li>
+        <li><strong>Spiegabilità:</strong> chiarezza delle motivazioni associate agli alert.</li>
+        <li><strong>Risposta sicura:</strong> correttezza delle azioni e dei comportamenti fail-safe.</li>
+        <li><strong>Tracciabilità:</strong> completezza della timeline e dell’audit trail.</li>
+        <li><strong>Integrazione:</strong> compatibilità con architettura e workflow esistenti.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Valore per l’azienda</h3>
+      <ul class="plain">
+        <li>Maggiore visibilità sugli eventi sospetti.</li>
+        <li>Supporto alle decisioni critiche.</li>
+        <li>Gestione degli incidenti più strutturata e verificabile.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Nessun miglioramento percentuale viene dichiarato prima dell’esecuzione dei test.</p>
+</section>
+
+<div class="brand">AeroNix Guard (Demo) · Hackathon CIIRCLE</div>
+<nav aria-label="Navigazione">
+  <button id="prev" aria-label="Slide precedente">Indietro</button>
+  <span id="count">1 / 6</span>
+  <button id="next" aria-label="Slide successiva">Avanti</button>
+</nav>
+
+<script>
+(function(){
+  var s=document.querySelectorAll('.slide'),i=0,c=document.getElementById('count');
+  function go(n){
+    i=Math.max(0,Math.min(s.length-1,n));
+    for(var k=0;k<s.length;k++)s[k].classList.toggle('on',k===i);
+    c.textContent=(i+1)+' / '+s.length;
+  }
+  document.getElementById('next').onclick=function(){go(i+1)};
+  document.getElementById('prev').onclick=function(){go(i-1)};
+  document.addEventListener('keydown',function(e){
+    if(['ArrowRight','PageDown',' '].indexOf(e.key)>-1){e.preventDefault();go(i+1)}
+    if(['ArrowLeft','PageUp'].indexOf(e.key)>-1){e.preventDefault();go(i-1)}
+    if(e.key==='Home')go(0);
+    if(e.key==='End')go(s.length-1);
+  });
+})();
+</script>
+</body>
+</html>
